@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自用导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #EAF2F9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #00A6ED 0%, #007BBD 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .subtitle {
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* 搜索区域样式 */
+        .search-box {
+            padding: 20px;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .search-input-container {
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-icon-left {
+            width: 40px;
+            height: 40px;
+            background-image: url('https://www.bing.com/favicon.ico'); /* 初始为 Bing 图标 */
+            background-size: contain;
+            margin-right: 10px;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        /* 右侧搜索引擎切换图标组 */
+        .search-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-option img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        
+        /* 分类链接区域 */
+        .categories {
+            padding: 30px;
+        }
+        
+        .category-title {
+            color: #495057;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e9ecef;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .link-item {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .link-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: #00A6ED;
+        }
+        
+        .link-item a {
+            text-decoration: none;
+            color: #495057;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            color: rgba(0, 0, 0, 0.8);
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .links {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .search-input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>自用导航</h1>
+            <p class="subtitle">快速访问常用网站</p>
+        </header>
+        
+        <!-- 搜索区域 -->
+        <div class="search-box">
+            <div class="search-input-container">
+                <!-- 左侧图标（随搜索引擎变化） -->
+                <div class="search-icon-left"></div>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="使用必应搜索网站..." 
+                    id="searchInput" 
+                    onkeydown="if(event.keyCode==13) search()"
+                >
+            </div>
+            <!-- 搜索引擎切换图标组 -->
+            <div class="search-options">
+                <div class="search-option" onclick="changeSearchEngine('bing')">
+                    <img src="https://www.bing.com/favicon.ico" alt="Bing">
+                </div>
+                <div class="search-option" onclick="changeSearchEngine('google')">
+                    <img src="https://www.google.com/favicon.ico" alt="Google">
+                </div>
+                <div class="search-option" onclick="changeSearchEngine('baidu')">
+                    <img src="https://www.baidu.com/favicon.ico" alt="百度">
+                </div>
+            </div>
+        </div>
+
+        <!-- 网站分类 -->
+        <div class="categories">
+            <h3 class="category-title">搜索引擎</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://www.google.com" target="_blank">
+                        <img src="https://www.google.com/favicon.ico" alt="Google" class="link-icon">
+                        Google
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.baidu.com" target="_blank">
+                        <img src="https://www.baidu.com/favicon.ico" alt="百度" class="link-icon">
+                        百度
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://cn.bing.com/" target="_blank">
+                        <img src="https://cn.bing.com//favicon.ico" alt="必应" class="link-icon">
+                        必应
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="" target="_blank">
+                        <img src="/favicon.ico" alt="" class="link-icon">
+                        
+                    </a>
+                </div>
+            </div>
+            <!-- 网络购物 -->
+            <h3 class="category-title">网络购物</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://www.taobao.com" target="_blank">
+                        <img src="https://www.taobao.com/favicon.ico" alt="淘宝" class="link-icon">
+                        淘宝
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.jd.com/" target="_blank">
+                        <img src="https://www.jd.com//favicon.ico" alt="京东" class="link-icon">
+                        京东
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.smzdm.com/" target="_blank">
+                        <img src="https://www.smzdm.com//favicon.ico" alt="什么值得买" class="link-icon">
+                        什么值得买
+                    </a>
+                </div>
+            </div>
+
+            <!-- 可继续添加其他分类 -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 自用导航页面</p>
+    </footer>
+
+    <!-- JavaScript 控制搜索行为 -->
+    <script>
+        let currentSearchEngine = 'bing'; // ✅ 默认搜索引擎设为 Bing
+
+        function changeSearchEngine(engine) {
+            currentSearchEngine = engine;
+            const inputElement = document.getElementById('searchInput');
+            switch (engine) {
+                case 'google':
+                    inputElement.placeholder = "使用Google搜索网站...";
+                    document.querySelector('.search-icon-left').style.backgroundImage = "url('https://www.google.com/favicon.ico')";
+                    break;
+                case 'bing':
+                    inputElement.placeholder = "使用必应搜索网站...";
+                    document.querySelector('.search-icon-left').style.backgroundImage = "url('https://www.bing.com/favicon.ico')";
+                    break;
+                default: // baidu
+                    inputElement.placeholder = "使用百度搜索网站...";
+                    document.querySelector('.search-icon-left').style.backgroundImage = "url('https://www.baidu.com/favicon.ico')";
+            }
+        }
+
+        function search() {
+            const query = document.querySelector('.search-input').value.trim();
+            if (query) {
+                let searchUrl = '';
+                switch (currentSearchEngine) {
+                    case 'google':
+                        searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                        break;
+                    case 'bing':
+                        searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                        break;
+                    default: // baidu
+                        searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`;
+                }
+                window.open(searchUrl);
+            }
+        }
+    </script>
+</body>
+</html>
+
+            
+            
