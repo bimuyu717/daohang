@@ -36,6 +36,19 @@
             color: white;
             text-align: center;
             padding: 30px 20px;
+            position: relative; /* 支持绝对定位 */
+        }
+
+        /* 时间显示样式 */
+        #time {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;  
+            text-align: center;
+            line-height: 1.4;
         }
         
         h1 {
@@ -68,7 +81,7 @@
         .search-icon-left {
             width: 40px;
             height: 40px;
-            background-image: url('https://www.bing.com/favicon.ico'); /* 初始为 Bing 图标 */
+            background-image: url('https://www.bing.com/favicon.ico');
             background-size: contain;
             margin-right: 10px;
         }
@@ -182,12 +195,13 @@
         <header>
             <h1>自用导航</h1>
             <p class="subtitle">快速访问常用网站</p>
+            <!-- 实时时间显示 -->
+            <div id="time"></div>
         </header>
         
         <!-- 搜索区域 -->
         <div class="search-box">
             <div class="search-input-container">
-                <!-- 左侧图标（随搜索引擎变化） -->
                 <div class="search-icon-left"></div>
                 <input 
                     type="text" 
@@ -211,35 +225,145 @@
             </div>
         </div>
 
-        <!-- 网站分类 -->
+        <!-- 常用 -->
         <div class="categories">
-            <h3 class="category-title">搜索引擎</h3>
+            <h3 class="category-title">常用</h3>
             <div class="links">
                 <div class="link-item">
-                    <a href="https://www.google.com" target="_blank">
-                        <img src="https://www.google.com/favicon.ico" alt="Google" class="link-icon">
-                        Google
+                    <a href="https://note.youdao.com/" target="_blank">
+                        <img src="https://note.youdao.com/favicon.ico" alt="有道云笔记" class="link-icon">
+                        有道云笔记
                     </a>
                 </div>
                 <div class="link-item">
-                    <a href="https://www.baidu.com" target="_blank">
-                        <img src="https://www.baidu.com/favicon.ico" alt="百度" class="link-icon">
-                        百度
+                    <a href="https://www.github.com/" target="_blank">
+                        <img src="https://pages.github.com/favicon.ico" alt="Github" class="link-icon">
+                        Github
                     </a>
                 </div>
                 <div class="link-item">
-                    <a href="https://cn.bing.com/" target="_blank">
-                        <img src="https://cn.bing.com//favicon.ico" alt="必应" class="link-icon">
-                        必应
+                    <a href="https://steampp.net/" target="_blank">
+                        <img src="https://steampp.net/favicon.ico" alt="Steam++" class="link-icon">
+                        Steam++
                     </a>
                 </div>
                 <div class="link-item">
-                    <a href="" target="_blank">
-                        <img src="/favicon.ico" alt="" class="link-icon">
-                        
+                    <a href="https://ikuuu.one/" target="_blank">
+                        <img src="https://ikuuu.one/favicon.ico" alt="ikuuu" class="link-icon">
+                        ikuuu
                     </a>
                 </div>
             </div>
+        </div>
+
+        <!-- 在线工具 -->
+        <div class="categories">
+            <h3 class="category-title">在线工具</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://bimuyu717.github.io/tools/" target="_blank">
+                        <img src="https://pages.github.com/favicon.ico" alt="GitHub与Raw互转" class="link-icon">
+                        GitHub与Raw互转
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://github.akams.cn/" target="_blank">
+                        <img src="https://cdn.akams.cn/static/ico.png" alt="GitHub加速（akams）" class="link-icon">
+                        GitHub加速（akams）
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://ghproxy.net/" target="_blank">
+                        <img src="https://pages.github.com/favicon.ico" alt="GitHub加速（ghproxy）" class="link-icon">
+                        GitHub加速（ghproxy）
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://bimuyu717.github.io/daohang" target="_blank">
+                        <img src="https://pages.github.com/favicon.ico" alt="导航" class="link-icon">
+                        导航
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 视频网站 -->
+        <div class="categories">
+            <h3 class="category-title">视频网站</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://www.douyin.com/" target="_blank">
+                        <img src="https://www.douyin.com/favicon.ico" alt="抖音" class="link-icon">
+                        抖音
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.bilibili.com/" target="_blank">
+                        <img src="https://www.bilibili.com/favicon.ico" alt="B站" class="link-icon">
+                        B站
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://netflixgc.2rdh.com/" target="_blank">
+                        <img src="https://www.netflixgc.com/upload/site/20241029-1/a3066e37a45ef286668060443b4de885.png" alt="奈飞工厂" class="link-icon">
+                        奈飞工厂
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.dandanqu.vip/" target="_blank">
+                        <img src="https://www.dandanqu.fun/mxtheme/images/logo_black.png" alt="蛋蛋趣发布页" class="link-icon">
+                        蛋蛋趣发布页
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://fast55.life/" target="_blank">
+                        <img src="https://vpic.cms.qq.com/nj_vpic/3272248629/1738571619832751129/5716822510667367545" alt="555电影发布页" class="link-icon">
+                        555电影发布页
+                    </a>
+                </div>
+            </div>
+
+            <!-- 影视剧 -->
+            <h3 class="category-title">影视剧</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://www.6v520.com/" target="_blank">
+                        <img src="https://www.6v520.com/favicon.ico" alt="6v电影" class="link-icon">
+                        6v电影
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.yinfans.me/" target="_blank">
+                        <img src="https://s44.playwoool.com/wp-content/uploads/2017/04/LOGO_3.png" alt="音范丝" class="link-icon">
+                        音范丝
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.dytt8899.com/" target="_blank">
+                        <img src="https://www.dytt8899.com/favicon.ico" alt="电影天堂" class="link-icon">
+                        电影天堂
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.seedhub.cc/" target="_blank">
+                        <img src="https://www.seedhub.cc/favicon.ico" alt="seedhub" class="link-icon">
+                        seedhub
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://zimuku.org/" target="_blank">
+                        <img src="https://zimuku.org/favicon.png" alt="字幕库" class="link-icon">
+                        字幕库
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.opensubtitles.com/" target="_blank">
+                        <img src="https://www.opensubtitles.com/assets/opensubtitles-beta-logo-8f6b0c6dc297bbcce8d571e61f951d14dab0a18a944fce0f7f706b976934955f.png" alt="opensubtitles" class="link-icon">
+                        opensubtitles
+                    </a>
+                </div>
+            </div>
+
             <!-- 网络购物 -->
             <h3 class="category-title">网络购物</h3>
             <div class="links">
@@ -263,7 +387,56 @@
                 </div>
             </div>
 
-            <!-- 可继续添加其他分类 -->
+            <!-- 软件 -->
+            <h3 class="category-title">软件</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://www.423down.com/" target="_blank">
+                        <img src="https://www.423down.com/favicon.ico" alt="423down" class="link-icon">
+                        423down
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.naodai.org/" target="_blank">
+                        <img src="https://www.naodai.org/favicon.ico" alt="脑袋瓜子" class="link-icon">
+                        脑袋瓜子
+                    </a>
+                </div>
+            </div>
+
+            <!-- 论坛 -->
+            <h3 class="category-title">论坛</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://www.52pojie.cn/" target="_blank">
+                        <img src="https://www.52pojie.cn/favicon.ico" alt="吾爱破解" class="link-icon">
+                        吾爱破解
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://bbs.pcbeta.com/" target="_blank">
+                        <img src="https://bbs.pcbeta.com/favicon.ico" alt="pcbeta" class="link-icon">
+                        pcbeta
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://www.freedidi.com/" target="_blank">
+                        <img src="https://www.freedidi.com/favicon.ico" alt="零度博客" class="link-icon">
+                        零度博客
+                    </a>
+                </div>
+            </div>
+
+            <!-- 下载 -->
+            <h3 class="category-title">下载</h3>
+            <div class="links">
+                <div class="link-item">
+                    <a href="https://next.itellyou.cn/" target="_blank">
+                        <img src="https://next.itellyou.cn/favicon.ico" alt="itellyou" class="link-icon">
+                        itellyou
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -271,9 +444,9 @@
         <p>© 2025 自用导航页面</p>
     </footer>
 
-    <!-- JavaScript 控制搜索行为 -->
+    <!-- JavaScript 控制搜索和时间 -->
     <script>
-        let currentSearchEngine = 'bing'; // ✅ 默认搜索引擎设为 Bing
+        let currentSearchEngine = 'bing'; // 默认搜索引擎设为 Bing
 
         function changeSearchEngine(engine) {
             currentSearchEngine = engine;
@@ -310,9 +483,33 @@
                 window.open(searchUrl);
             }
         }
+
+        // 获取中文星期
+        function getChineseWeekday(day) {
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            return weekdays[day];
+        }
+
+        // 更新时间函数
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const day = now.getDate();
+            const weekday = getChineseWeekday(now.getDay());
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const timeString = `${year}年${month}月${day}日 ${weekday}<br>${hours}:${minutes}:${seconds}`;
+            document.getElementById('time').innerHTML = timeString;
+        }
+
+        // 页面加载后立即更新一次
+        updateTime();
+
+        // 每秒更新一次
+        setInterval(updateTime, 1000);
     </script>
 </body>
 </html>
-
-            
-            
